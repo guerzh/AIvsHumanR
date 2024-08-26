@@ -1,0 +1,35 @@
+```{R}
+
+# Download https://www.kaggle.com/datasets/shanegerami/ai-vs-human-text?resource=download
+# Extract CSV into your folder. Use setwd as necessary to get into the folder
+# setwd('/home/guerzhoy/Downloads/archive5')
+
+dat <- read.csv('AI_Human.csv')
+
+
+idx  <- sample(1:nrow(dat))
+```
+
+```{R}
+#idx  <- sample(1:nrow(dat))
+correct <- 0
+total <- 0
+for(i in idx[1:15]){
+    print(cat(dat[idx[i], 'text']))
+    # get the user input
+    user_input <- readline(prompt="Enter your answer: ")
+    # print the user input
+    print(user_input)
+    # print the correct answer
+    print(dat[idx[i], 'generated'])
+    correct  <- correct + (as.integer(user_input) == dat[idx[i], 'generated'])
+
+    # print the number of correct answers
+    #"You have answered correctly: "
+    cat("You have answered correctly: ", correct, " out of ", 15, " questions.")
+
+    readline(prompt="Press enter: ")
+}
+
+
+```
